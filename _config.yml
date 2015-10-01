@@ -27,7 +27,7 @@ baseurl: ""
 twitter_handle: '@_iostreamer_'
 
 #fill in disqus shortname to use disqus
-#disqus: disqus-shortname
+disqus: io-streamer
 
 # social icons and sharing options
 social:
