@@ -1,17 +1,8 @@
 ---
 layout: page
-title: About
+title: iostreamer.printDetails()
 permalink: /about/
 ---
+Umm Hello! I am a dev who loves/lives to code. Polyglot, yes. I love frameworks and languages. I get the same feeling on seeing a new language as when I used to get a new toy in my childhood. I must confess, though I love languages I am not proficient in each of them,yet. I started with JAVA for Android. Well actually my first language was C++ in school but I don't count that. And through my way in time I fell for Scala, learned a bit of R, made a machine learning system for better market penetration, took a whole new approach to simulation on GPU. And not to forget, founded my first startup,  Amethyst Labs. My hate towards college surpasses Peter Gregory's hate towards the same. Big fan of Silicon Valley(the show). I feel like I should tell that it is 1:16 AM and I have my OS exam in 9 hours and I have no idea how disk scheduling works.
 
-A medium inspired Jekyll blog theme. The basic idea came from the Ghost theme 
-[Readium 2.0](http://www.svenread.com/readium-ghost-theme/). I use mediator on my own blog [The Base](blog.base68.com).
-
-You can **download** the theme here:
-[https://github.com/dirkfabisch/mediator](https://github.com/dirkfabisch/mediator) 
-
-You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+<center><img src = "/assets/images/io.png"/></center>
