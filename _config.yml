@@ -3,7 +3,7 @@ markdown: redcarpet
 highlighter: pygments
 gems:
   - jemoji
-  
+
 # Site settings
 title: "iostreamer"
 description: > # this means to ignore newlines until "email:"
@@ -11,17 +11,17 @@ description: > # this means to ignore newlines until "email:"
 
 email: iostreamer@amethystlabs.org
 #blog logo
-logo: "/assets/images/df_logo.jpg"
+logo: "/assets/images/favicon.jpg"
 # blog cover
-cover: "/assets/images/cA4aKEIPQrerBnp1yGHv_IMG_9534-3-2.jpg"
+cover: "/assets/images/L.jpg"
 
 name: 'iostreamer'
 author: 'iostreamer'
-author_image: "/assets/images/author.jpg"
+author_image: "/assets/images/favicon.jpg"
 
 paginate:	5
 
-url: "http://myblog.***.***" # the base hostname & protocol for your site
+url: "http://iostreamer-X.github.io" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
 twitter_handle: '@_iostreamer_'
@@ -38,12 +38,12 @@ social:
     share_title: ?text=
     share_link: "&amp;url="
 
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: https://www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
+  - icon:	facebook
+    url:	https://facebook.com/rahul.iostreamer
+    desc: Connect with me facebook
+    share_url: https://www.facebook.com/sharer.php
+    share_title: ?t=
+    share_link: "&amp;u="
 
   - icon:	github
     url:	https://github.com/iostreamer-X
@@ -52,9 +52,9 @@ social:
     share_title:
     share_link:
 
-#  - icon:	google-plus
-#    url:	https://google.com/???
-#    desc:	Add me on google+
-#    share_url:
-#    share_title:
-#    share_link:
+  - icon:	google-plus
+    url:	https://plus.google.com/100193742345396424276
+    desc:	Add me on google+
+    share_url:
+    share_title:
+    share_link:
