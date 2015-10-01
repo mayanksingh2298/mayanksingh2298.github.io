@@ -5,6 +5,9 @@ date:   2015-10-01 20:52:25
 categories: Linux Python
 image: /assets/article_images/2015-10-01-deadly-linux-python/dyna.png
 ---
+<br/>
+<br/>
+<br/>
 >Set the volume to 10% and increase the brightness by 30%.
 How's the weather in New Delhi and play Rap God on YouTube.
 
