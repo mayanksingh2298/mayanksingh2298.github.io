@@ -21,7 +21,7 @@ author_image: "/assets/images/favicon.jpg"
 
 paginate:	5
 
-url: "http://iostreamer-X.github.io" # the base hostname & protocol for your site
+url: "http://blog.iostreamer.me" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
 twitter_handle: '@_iostreamer_'
