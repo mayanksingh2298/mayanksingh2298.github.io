@@ -46,7 +46,7 @@ import music_control
 context = 'null'
 if __name__ == '__main__':
 	def handle_response(response):
-    		decoded = json.loads(response)
+        decoded = json.loads(response)
 		body = decoded['_text']
 		if body is not None:
 			confidence = decoded['outcomes'][0]['confidence']
