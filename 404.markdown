@@ -3,7 +3,7 @@ layout: post
 title:  "Wake up Neo"
 date:   2095-2-29 20:52:25
 categories: Matrix
-image: /assets/images/matrix.gif
+image: /assets/images/matrix2.gif
 ---
 
 <br/>
