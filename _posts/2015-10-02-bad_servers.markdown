@@ -32,7 +32,7 @@ def receive = {
 						temp
 
 			self ! Grid.host
-e
+			
 		case (todo: (String => Unit), onMainThread: Boolean) =>
 			if (onMainThread)
 				incomingMessage
