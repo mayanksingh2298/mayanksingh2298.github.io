@@ -15,7 +15,7 @@ Some related to skia, some related to json parsing and hell f****** lot about
 with almost no impact on performance, the other one is a glorious blunder caused
 by utter ignorance. I will start with the little one.
 
-Grid's networking part uses actors to host TCP servers, the actors look something
+Grid's networking part uses Akka actors to host TCP servers, the actors look something
 like this:
 
 {% highlight scala %}
