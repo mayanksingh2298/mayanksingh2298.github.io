@@ -8,9 +8,11 @@ Umm Hello! I am a dev who loves/lives to code. Polyglot, yes. I love frameworks 
 <script type="text/javascript">
     function getProcessingSketchID () { return 'sketch1'; }
 </script>
+<center>
 <figure>
     <canvas id="sketch1" data-processing-sources="/assets/io.pde" tabindex="0" style="image-rendering: -webkit-optimize-contrast !important;">
     <p>Your browser does not support the canvas tag.</p>
     </canvas>
     <figcaption>View source code: <a href="/assets/io.pde">io.pde</a></figcaption>
 </figure>
+</center>
