@@ -1,9 +1,10 @@
-int x, y;
+int x, y, r;
 
 void setup() {
   size(screen.width/1.7, screen.height/1.7)
   x=width/2;
   y=height/2;
+  r= y-40;
   background(11);
   stroke(200);
   strokeWeight(1.3);
@@ -12,11 +13,11 @@ void setup() {
 
 void draw() {
   background(11);
-  bezier(x, y-160, 
+  bezier(x, y-r, 
     (int)map(sin(frameCount*0.05), -1, 1, x-20, x+20), (int)map(sin(frameCount*0.05), -1, 1, y-20, y+20), 
     (int)map(cos(frameCount*0.05), -1, 1, x-20, x+20), (int)map(cos(frameCount*0.05), -1, 1, y-20, y+20), 
-    x, y+160);
-  polygon(x, y, 160, 100);
+    x, y+r);
+  polygon(x, y, r, 100);
 }
 
 void polygon(float x, float y, float radius, int npoints) {
