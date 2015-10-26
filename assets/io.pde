@@ -1,7 +1,7 @@
 int x, y;
 
 void setup() {
-  size(800, 700);
+  size(window.innerWidth/2, window.innerHeight);
   x=width/2;
   y=height/2;
   background(11);
