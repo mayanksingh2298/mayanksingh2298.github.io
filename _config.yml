@@ -11,13 +11,13 @@ description: > # this means to ignore newlines until "email:"
 
 email: iostreamer@amethystlabs.org
 #blog logo
-logo: "/assets/images/favicon.jpg"
+logo: "/assets/images/io.jpg"
 # blog cover
 cover: "/assets/images/L.jpg"
 
 name: 'iostreamer'
 author: 'iostreamer'
-author_image: "/assets/images/favicon.jpg"
+author_image: "/assets/images/io.jpg"
 
 paginate:	5
 
