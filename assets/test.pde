@@ -1,4 +1,4 @@
-class MatrixStream{
+lass MatrixStream{
   int xOffSet;
   int yDump;
   int ch=0;
