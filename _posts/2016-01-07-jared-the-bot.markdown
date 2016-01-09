@@ -5,7 +5,8 @@ date: 2016-01-07 02:18:01
 categories: Bots
 image: /assets/article_images/jared-header.png
 ---
-
+<br/>
+<br/>
 >Bot: Why would you want to be something more than a machine?
 
 >Me: Because I choose to
@@ -89,11 +90,13 @@ and cover everything that is needed.
 The first time deployed the app, it crashed after a minute. The error was "*Web process failed to bind to $PORT within 60 seconds of launch*". Quick google search revealed that heroku assigns a dynamic port to your app and tries to bind to it. Since all I had was a slack bot so there was no server in my code. I wasn't listening to any connections.
 
 Lets say if I had been listening, then there is this [dyno sleeping](https://devcenter.heroku.com/articles/dyno-sleeping) rule they have, that would have made my bot pretty much useless(I have a free plan and I hardly pay for anything, except Apple Music. I'd pay for that).
-
+<br/><br/><br/>
 >If an app has a web dyno, and that web dyno receives no traffic in a 30 minute period, the web dyno will sleep. In addition to the web dyno sleeping, the worker dyno (if present) will also sleep.
 
+<br/>
 >If a sleeping web dyno receives web traffic, it will become active again after a very short delay. If the app has a worker dyno that was scaled up before sleeping, it will be scaled up again too.
 
+<br/><br/><br/>
 And interacting with the bot or sending it messages doesn't count as traffic. So no matter what, your bot will go
 down after 30 minutes.
 
@@ -147,7 +150,7 @@ to do that, just go to monogolab's [site](https://mongolab.com/). MongoLab is Mo
 free plan and you get 500MB storage. Make a database there and you'll get a URI which you can use for
 remote access. It looks like this
 
-`mongodb://<dbuser>:<dbpassword>@ds099315.mongolab.com:99315/your-db`
+`mongodb://<dbuser>:<dbpassword>@ds<x>.mongolab.com:<x>/your-db`
 
 To use mongo in my app I chose [mongojs](https://github.com/mafintosh/mongojs). It's a really good library
 and emulates the standard MongoDB API. For example:
