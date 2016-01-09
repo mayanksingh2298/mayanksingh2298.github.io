@@ -145,7 +145,7 @@ And `strobe` in turn requests your app through its url. So your app can never be
 
 ###MongoDB on heroku
 <br/>
-MongoDB add on by MongoLab needs you to provide card details, just to verify. And in case you don't want
+MongoDB addon by MongoLab needs you to provide card details, just to verify. And in case you don't want
 to do that, just go to monogolab's [site](https://mongolab.com/). MongoLab is MongoDB as a Service. Signup for the
 free plan and you get 500MB storage. Make a database there and you'll get a URI which you can use for
 remote access. It looks like this
