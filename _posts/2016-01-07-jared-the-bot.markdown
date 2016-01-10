@@ -142,6 +142,9 @@ And `strobe` in turn requests your app through its url. So your app can never be
 </center>
 <br/>
 
+**Edit**: One might say that simply use a worker dyno, that would prevent this 'unable to bind error'. Yes that would prevent that from happening but when you use a worker dyno then **the time your script/code is running is counted as active time.** And on a free dyno, your code can run for only 18 hours. So, if you use a worker dyno for
+the bot, it will be put to sleep for at least 6 hours per day, as that code would be running continuously. **But when you use a web dyno, the time your code serves requests is counted as active time**. Since it's just every 25 minutes, you will never reach your quota limit. Which would mean that your bot would never sleep. 
+
 
 ###MongoDB on heroku
 <br/>
