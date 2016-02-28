@@ -2,7 +2,7 @@
 layout: post
 title: Observable anything with Scala.Rx
 date: 2016-02-29 01:44:01
-categories: Bots
+categories: Scala
 image: /assets/article_images/frp.png
 ---
 <br/>
