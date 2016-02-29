@@ -158,7 +158,8 @@ And `strobe` in turn requests your app through its url. So your app can never be
 the bot, it will be put to sleep for at least 6 hours per day, as that code would be running continuously. **But when you use a web dyno, the time your code serves requests is counted as active time**. Since it's just every 25 minutes, you will never reach your quota limit. Which would mean that your bot would never sleep.
 
 
-###MongoDB on heroku
+MongoDB on heroku
+----
 
 <br/>
 MongoDB addon by MongoLab needs you to provide card details, just to verify. And in case you don't want
