@@ -16,7 +16,8 @@ image: /assets/article_images/jared-header.png
 >Me: Because I can
 
 
-#Build a slack bot and deploy on heroku
+Build a slack bot and deploy on heroku
+=
 
 <br/>
 There has been an awakening. Bots, slack bots have taken over and they are everywhere.
@@ -38,7 +39,8 @@ Step by step
 =
 <br/>
 
-###Get the token
+Get the token
+---
 <br/>
 The first thing I did was to just start right away. To build a bot you have to have an
 access token. So just go [here](https://slack.com/apps/build) and choose 'Make a custom integration'.
@@ -48,7 +50,8 @@ Choose 'Bots' on the next screen and after that you know the drill.
 ![The drill](/assets/article_images/new-bot.png)
 
 
-###Get the library
+Get the library
+---
 <br/>
 Once I acquired the token, I ran straight for a reliable node library for slack bots.
 And found [this](https://github.com/slackhq/node-slack-client). This library is I guess
@@ -56,7 +59,8 @@ the de facto for making bots and in case its not then it should be. The lack of 
 worried me a little but just looking around and reading the source as well as the sample
 code in 'examples' made things quite clear.
 
-####My notes on using the library
+My notes on using the library
+----
 <br/>
 `slack = new Slack(token, true, true)`
 The slack variable is your window to the slack world of yours. It has three main events
@@ -79,7 +83,8 @@ like this `channel.send "Hi"`. Same is the case with `slack.getChannelByName ($n
 
 
 
-###Start with heroku deployment
+Start with heroku deployment
+---
 <br/>
 Next problem I faced was with `heroku create`(actually it was my fault). I didn't initialize my project with
 git. So `git push heroku master` was pretty useless. Bottom line, do a git init first and then start working on
@@ -88,7 +93,8 @@ your app.
 Signup on heroku if you have't and read their 'getting-started-with-nodejs'. Their [notes](https://devcenter.heroku.com/articles/getting-started-with-nodejs) are perfect
 and cover everything that is needed.
 
-###Heroku slack bot problems
+Heroku slack bot problems
+---
 <br/>
 The first time deployed the app, it crashed after a minute. The error was "*Web process failed to bind to $PORT within 60 seconds of launch*". Quick google search revealed that heroku assigns a dynamic port to your app and tries to bind to it. Since all I had was a slack bot so there was no server in my code. I wasn't listening to any connections.
 
@@ -105,7 +111,8 @@ Lets say if I had been listening, then there is this [dyno sleeping](https://dev
 And interacting with the bot or sending it messages doesn't count as traffic. So no matter what, your bot will go
 down after 30 minutes.
 
-###Killing 3 agents with one Matrix style punch.
+Killing 3 agents with one Matrix style punch.
+---
 <br/>
 **Agent 1**: "*Web process failed to bind to $PORT within 60 seconds of launch*"
 
@@ -152,6 +159,7 @@ the bot, it will be put to sleep for at least 6 hours per day, as that code woul
 
 
 ###MongoDB on heroku
+
 <br/>
 MongoDB addon by MongoLab needs you to provide card details, just to verify. And in case you don't want
 to do that, just go to monogolab's [site](https://mongolab.com/). MongoLab is MongoDB as a Service. Signup for the
