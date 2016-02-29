@@ -6,7 +6,7 @@ categories: Bots
 image: /assets/article_images/jared-header.png
 ---
 <br/>
-<br/>
+
 >Bot: Why would you want to be something more than a machine?
 
 >Me: Because I choose to
@@ -17,6 +17,7 @@ image: /assets/article_images/jared-header.png
 
 
 #Build a slack bot and deploy on heroku
+
 <br/>
 There has been an awakening. Bots, slack bots have taken over and they are everywhere.
 
@@ -33,8 +34,10 @@ it I learned about
 4. Do a `git init` before `heroku create`
 
 
-#Step by step
+Step by step
+=
 <br/>
+
 ###Get the token
 <br/>
 The first thing I did was to just start right away. To build a bot you have to have an
@@ -91,9 +94,11 @@ The first time deployed the app, it crashed after a minute. The error was "*Web 
 
 Lets say if I had been listening, then there is this [dyno sleeping](https://devcenter.heroku.com/articles/dyno-sleeping) rule they have, that would have made my bot pretty much useless(I have a free plan and I hardly pay for anything, except Apple Music. I'd pay for that).
 <br/><br/><br/>
+
 >If an app has a web dyno, and that web dyno receives no traffic in a 30 minute period, the web dyno will sleep. In addition to the web dyno sleeping, the worker dyno (if present) will also sleep.
 
 <br/>
+
 >If a sleeping web dyno receives web traffic, it will become active again after a very short delay. If the app has a worker dyno that was scaled up before sleeping, it will be scaled up again too.
 
 <br/><br/><br/>
@@ -110,7 +115,7 @@ down after 30 minutes.
 
 **Matrix style punch**: Get a server in your code and ping it after every 25 minutes.
 
-```javascript
+{%  highlight javascript %}
 http = require 'http'
 request = require 'request'
 
@@ -126,7 +131,7 @@ handle = (req, res) -> res.end "42"
 server = http.createServer handle
 server.listen process.env.PORT || 5000
 
-```
+{%  endhighlight %}
 
 **Killing Agent 1**: Since you have a server running on `process.env.PORT`(the port heroku assingned to your app),
 heroku is able to bind to it. Agent killed.
@@ -143,7 +148,7 @@ And `strobe` in turn requests your app through its url. So your app can never be
 <br/>
 
 **Edit**: One might say that simply use a worker dyno, that would prevent this 'unable to bind error'. Yes that would prevent that from happening but when you use a worker dyno then **the time your script/code is running is counted as active time.** And on a free dyno, your code can run for only 18 hours. So, if you use a worker dyno for
-the bot, it will be put to sleep for at least 6 hours per day, as that code would be running continuously. **But when you use a web dyno, the time your code serves requests is counted as active time**. Since it's just every 25 minutes, you will never reach your quota limit. Which would mean that your bot would never sleep. 
+the bot, it will be put to sleep for at least 6 hours per day, as that code would be running continuously. **But when you use a web dyno, the time your code serves requests is counted as active time**. Since it's just every 25 minutes, you will never reach your quota limit. Which would mean that your bot would never sleep.
 
 
 ###MongoDB on heroku
@@ -158,14 +163,14 @@ remote access. It looks like this
 To use mongo in my app I chose [mongojs](https://github.com/mafintosh/mongojs). It's a really good library
 and emulates the standard MongoDB API. For example:
 
-```javascript
+{%  highlight javascript %}
 var mongojs = require('mongojs')
 var db = mongojs('mongodb://<dbuser>:<dbpassword>@ds099315.mongolab.com:99315/your-db', ['users','clients'])
 
 db.users.find({name: "Thomas A. Anderson"},function (err, docs) {
     // docs is an array of all the documents in users
 })
-```
+{%  endhighlight %}
 
 So that was that. The bot is on heroku 24/7 doing stuff for me. It was fun and I learned coffeescript too
 while making it. It's a cool flavor of node, and coming from a scala background, I could relate. I hope these tips

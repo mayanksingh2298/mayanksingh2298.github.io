@@ -5,9 +5,7 @@ date: 2016-02-29 01:44:01
 categories: Scala
 image: /assets/article_images/frp.png
 ---
-<br/>
-<br/>
-<br/>
+
 The functional reactive programming course on coursera got me pretty excited for the
 FRP paradigm and it felt like it is the only sensible way of doing things.
 
@@ -15,28 +13,29 @@ I looked at my code of Grid and there was this really ugly block which took a va
 polled it every 0.5 seconds to check if anything changed, and published the change
 if it occurred. Here's the code(don't judge please):
 
-```scala
+{%  highlight scala %}
 def watchVariable[A](check: => A) = {
-		Observable[(A, A)](
-			observer => {
-				var initial = check
-				newThread {
-					while (true) {
-						val current = check
-						if (current != null)
-							if (!current.equals(initial)) {
-								observer.onNext((initial, current))
-								initial = check
-							}
-						Thread.sleep(500)
+	Observable[(A, A)](
+		observer => {
+			var initial = check
+			newThread {
+				while (true) {
+					val current = check
+					if (current != null)
+					if (!current.equals(initial)) {
+						observer.onNext((initial, current))
+						initial = check
 					}
+					Thread.sleep(500)
 				}
 			}
+		}
 		)
 	}
 
-```
+	{% endhighlight %}
 <br/>
+
 This might look stupid, inefficient or bug prone but at the time of writing code,
 Scala.Rx just slipped out of mind. It is a well documented and really awesome FRP
 library for Scala. And if you are thinking what FRP is then I would recommend the coursera
@@ -56,37 +55,38 @@ question from assignment and it was just there, on yahoo answers, solved by some
 we will use a SynchronizedHashMap(so I can haz thread safety), override the `+=` function(so that I don't have
 to change any current code) and use Scala.rx to watch changes. And here's the code in all its glory:
 
-```scala
+{%  highlight scala %}
 import rx._
 import scala.collection.mutable.{Map,
-    SynchronizedMap, HashMap}
+	SynchronizedMap, HashMap}
 
-object Scala_rx_tut extends App {
-  def makeMap(watch:Var[(String,String)]):Map[String, String] = {
-    new HashMap[String, String] with
-    SynchronizedMap[String, String] {
-      override def +=(kv: (String,String)) ={
-        val res=super.+=(kv)
-        watch()=kv
-        res
-      }
-    }
-  }
+	object Scala_rx_tut extends App {
+		def makeMap(watch:Var[(String,String)]):Map[String, String] = {
+			new HashMap[String, String] with
+			SynchronizedMap[String, String] {
+				override def +=(kv: (String,String)) ={
+					val res=super.+=(kv)
+					watch()=kv
+					res
+				}
+			}
+		}
 
-  val watch=Var("bill"->"cipher")
-  val map = makeMap(watch)
-  watch.trigger{
-    println(watch.now)
-  }
-  val arr=Array(("I"->"want"),("season"->"3"),("right"->"now"))
-  0 to 2 foreach{
-    i=>
-      map+=arr(i)
-  }
-}
+		val watch=Var("bill"->"cipher")
+		val map = makeMap(watch)
+		watch.trigger{
+			println(watch.now)
+		}
+		val arr=Array(("I"->"want"),("season"->"3"),("right"->"now"))
+		0 to 2 foreach{
+			i=>
+			map+=arr(i)
+		}
+	}
 
-```  
+		{%  endhighlight %}
 <br/>
+
 The makeMap function takes a Var argument which is basically the thing which will let us know
 if a new value is being added. The Var is special variable which has a callback which is fired when
 the value of the variable changes. We then use a HashMap as our base Map implementation, which then is mixed

@@ -6,9 +6,6 @@ categories: akka socket
 image: /assets/article_images/2015-10-02-bad_servers/mailbox.jpg
 ---
 
-</br>
-</br>
-
 While working on [Grid](http://amethystlabs.org/grid) I have faced hell lot of errors.
 Some related to skia, some related to json parsing and hell f****** lot about
 `ENETUNREACH (Network is unreachable)`. There are two mistakes I made, first one is small,
@@ -20,29 +17,29 @@ like this:
 
 {% highlight scala %}
 def receive = {
-		case Grid.host =>
-			port = 7961
-			startServer()
-			val temp = inStream.readUTF()
-			println(temp)
-			inData =
-					if (temp == inData)
-						temp + " <3"
-					else
-						temp
+	case Grid.host =>
+	port = 7961
+	startServer()
+	val temp = inStream.readUTF()
+	println(temp)
+	inData =
+	if (temp == inData)
+	temp + " <3"
+	else
+	temp
 
-			self ! Grid.host
+	self ! Grid.host
 
-		case (todo: (String => Unit), onMainThread: Boolean) =>
-			if (onMainThread)
-				incomingMessage
-						.observeOn(JavaConversions.javaSchedulerToScalaScheduler(AndroidSchedulers.mainThread()))
-						.subscribe(todo)
-			else
-				incomingMessage
-						.subscribe(todo)
-		case _ =>
-	}
+	case (todo: (String => Unit), onMainThread: Boolean) =>
+	if (onMainThread)
+	incomingMessage
+	.observeOn(JavaConversions.javaSchedulerToScalaScheduler(AndroidSchedulers.mainThread()))
+	.subscribe(todo)
+	else
+	incomingMessage
+	.subscribe(todo)
+	case _ =>
+}
 {% endhighlight %}
 
 Nothing fancy here, just an actor which can react to a string and a function. When
@@ -65,12 +62,12 @@ through a startServer() call. Under the hood, it does this:
 
 {% highlight scala %}
 def startServer() = {
-		stopServer()
-		serverSocket = new ServerSocket(port)
-		server = serverSocket.accept()
-		inStream = new DataInputStream(server.getInputStream)
-		outStream = new DataOutputStream(server.getOutputStream)
-	}
+	stopServer()
+	serverSocket = new ServerSocket(port)
+	server = serverSocket.accept()
+	inStream = new DataInputStream(server.getInputStream)
+	outStream = new DataOutputStream(server.getOutputStream)
+}
 {% endhighlight %}
 
 Lines:
@@ -98,16 +95,16 @@ import io.streamer.Server
 import io.streamer.Client
 
 object Io extends App {
-  new Server(9000, {
-      socket =>
-        val inputStream = new DataInputStream(socket.getInputStream)
-        val inData = inputStream.readLine
-        inputStream.close
-        socket.close
-        inData
+	new Server(9000, {
+		socket =>
+		val inputStream = new DataInputStream(socket.getInputStream)
+		val inData = inputStream.readLine
+		inputStream.close
+		socket.close
+		inData
 
-      }
-  ).start() foreach println
+	}
+	).start() foreach println
 }  
 {% endhighlight %}
 
