@@ -4,7 +4,7 @@
   <!--<iframe frameborder='no' height='300' scrolling='yes'
   src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/81283900/favorites&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;visual=false' width='100%'/>
 -->
-<audio id="audioElement" src="http://iostreamer.noip.me:7000/io.mp3"></audio>
+<audio id="audioElement" onerror="err()" src="http://iostreamer.noip.me:7000/io.mp3"></audio>
 <style media="screen">
 .onoffswitch {
   position: relative; width: 82px;
@@ -39,18 +39,21 @@
   right: 0px;
 }
 </style>
-
 <center>
 <div class="onoffswitch">
   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" unchecked>
     <label class="onoffswitch-label" for="myonoffswitch"></label>
 </div>
 </center>
-
-<p>Turn on to listen to my tunes.</p> <p>This little experiment lets anyone stream my laptop's speaker output, in realtime.</p>
+<p id="status" style="color:#00aa00">Turn on to listen to my tunes. I am online right now.</p> <p>This little experiment lets anyone stream my laptop's speaker output, in realtime.</p>
 <p>If nothing is being played for more than 15 seconds, then most probably I am sleeping, or in college, or you have shit internet.</p>
 <script type="text/javascript">
 var player=document.getElementById('audioElement')
+function err(e) {
+  var p = document.getElementById('status')
+  p.innerHTML="Sorry, I am offline."
+  p.style.color="#aa0000"
+}
 document.getElementById('myonoffswitch').onchange = function() {
   if ( document.getElementById('myonoffswitch').checked === false ) {
     player.pause();
