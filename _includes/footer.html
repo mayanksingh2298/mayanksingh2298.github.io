@@ -69,23 +69,23 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.send(null);
 }
 
-httpGetAsync('http://iostreamer.noip.me:8888',function (argument) {
+httpGetAsync('http://iostreamer.noip.me:9000',function (argument) {
 })
 document.getElementById('myonoffswitch').onchange = function() {
   if ( document.getElementById('myonoffswitch').checked === false ) {
     player.pause();
-    httpGetAsync('http://iostreamer.noip.me:8888/pause',function (argument) {
+    httpGetAsync('http://iostreamer.noip.me:9000/pause',function (argument) {
     })
   }
   else if ( document.getElementById('myonoffswitch').checked === true ) {
     player.play();
-    httpGetAsync('http://iostreamer.noip.me:8888/play',function (argument) {
+    httpGetAsync('http://iostreamer.noip.me:9000/play',function (argument) {
     })
   }
 }
 
 window.addEventListener("beforeunload", function (e) {
-  httpGetAsync('http://iostreamer.noip.me:8888/disconnect',function (argument) {
+  httpGetAsync('http://iostreamer.noip.me:9000/disconnect',function (argument) {
   })
 });
 
