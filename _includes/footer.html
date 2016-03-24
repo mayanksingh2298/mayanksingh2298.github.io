@@ -45,8 +45,8 @@
     <label class="onoffswitch-label" for="myonoffswitch"></label>
 </div>
 </center>
-<p id="status" style="color:#00aa00">Turn on to listen to my tunes. I am online right now.</p> <p>This little experiment lets anyone stream my laptop's speaker output, in realtime.</p>
-<p>If nothing is being played for more than 15 seconds, then most probably I am sleeping, or in college, or you have shit internet.</p>
+<p id="status" >Turn on to listen to my tunes.</p> <p>This little experiment lets anyone stream my laptop's speaker output, in realtime.</p>
+<p>If nothing is being played for more than 15 seconds, then most probably I am sleeping, or in college, or you have bad internet.</p>
 <script type="text/javascript">
 
 var player=document.getElementById('audioElement')
@@ -54,41 +54,16 @@ var player=document.getElementById('audioElement')
 function err(e) {
   var p = document.getElementById('status')
   p.innerHTML="Sorry, I am offline."
-  p.style.color="#999"
 }
 
-function httpGetAsync(theUrl, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onerror=err;
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous
-    xmlHttp.send(null);
-}
-
-httpGetAsync('http://iostreamer.noip.me:9000',function (argument) {
-})
 document.getElementById('myonoffswitch').onchange = function() {
   if ( document.getElementById('myonoffswitch').checked === false ) {
     player.pause();
-    httpGetAsync('http://iostreamer.noip.me:9000/pause',function (argument) {
-    })
-  }
+    }
   else if ( document.getElementById('myonoffswitch').checked === true ) {
     player.play();
-    httpGetAsync('http://iostreamer.noip.me:9000/play',function (argument) {
-    })
   }
 }
-
-window.addEventListener("beforeunload", function (e) {
-  httpGetAsync('http://iostreamer.noip.me:9000/disconnect',function (argument) {
-  })
-});
-
 </script>
 </footer>
 
