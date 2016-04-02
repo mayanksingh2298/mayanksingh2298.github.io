@@ -45,3 +45,9 @@ Script explained
 - `grep -q [text] [file or stdin] && command` is a pattern which executes the **command** when **text** is found in **file or stdin**.
 
 - `xte "str [text]"` is the real deal. It generates fake input **text** and `xte "key [key]"` fakes **key** presses.
+
+Demo
+==
+<br/>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SsBgIWJ-VTE" frameborder="0" allowfullscreen></iframe>
