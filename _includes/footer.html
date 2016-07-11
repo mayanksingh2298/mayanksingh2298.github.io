@@ -1,7 +1,7 @@
 <!-- footer start -->
 
 <footer class="site-footer" id="footer">
-  <audio id="audioElement" onerror="err()" src="https://io-streamer.herokuapp.com"></audio>
+  <audio id="audioElement" onerror="err()" src="https://ze-al.herokuapp.com/stream?email=rahuldtu007@gmail.com"></audio>
 <style media="screen">
 .onoffswitch {
   position: relative; width: 82px;
@@ -52,7 +52,8 @@
 <script type="text/javascript">
 
 var player=document.getElementById('audioElement')
-
+player.play()
+player.volume = 0;
 function err(e) {
   var p = document.getElementById('status')
   p.innerHTML="Sorry, I am offline."
@@ -60,10 +61,10 @@ function err(e) {
 
 document.getElementById('myonoffswitch').onchange = function() {
   if ( document.getElementById('myonoffswitch').checked === false ) {
-    player.pause();
+    player.volume = 0;
     }
   else if ( document.getElementById('myonoffswitch').checked === true ) {
-    player.play();
+    player.volume = 1;
   }
 }
 </script>
