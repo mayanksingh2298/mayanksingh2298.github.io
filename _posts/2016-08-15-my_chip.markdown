@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Doing stupid stuff with my CHIP"
+date:   2016-15-08 02:02:25
+categories: CHIP
+image: /assets/images/io.png
+---
+
+#Test
