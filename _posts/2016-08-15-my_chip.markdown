@@ -1,0 +1,50 @@
+---
+layout: post
+title:  "Doing stupid stuff with my CHIP"
+date:   2016-08-15 02:02:25
+categories: CHIP
+image: /assets/images/io.png
+---
+
+My laptop charger is dead
+==
+<br/>
+That is how this story begins. 
+
+My laptop has been dark for more than 24 hours, all because 
+it is a piece of junk which has a battery backup of 15 mins and 
+also because its charger broke. 
+
+All that is left now is my phone, or so I thought.
+I recently got my CHIP, which is a 8$ headless pc. Has 1Ghz 
+processor, 512mb RAM, 4 gigs of space. But what I love the most
+is its inbuilt WiFi and Bluetooth capabilities. 
+
+So, I decided to turn it into a permanent and always-on home
+server. 
+
+![](/assets/images/main.jpg)
+
+And because I don't have my laptop running, it's customary to 
+write a blog post from my phone through SSH. And that's what 
+I did.
+
+
+I cloned my blog repo from github, thought about installing ruby
+and bundle to run a local server but decided I didn't need it.
+Pretty normal stuff.
+
+Next is getting pictures. Easiest way I saw was to start an 
+HTTP server on my phone, and download the images through wget. 
+And that's what I did.
+
+![](/assets/images/wget.jpg)
+
+
+Lastly, made a new file for this post, took the first few 
+standard YAML lines from my previous post(`head -7 | file.md`).
+
+![](/assets/images/nano.jpg)
+
+And here I am, in nano, writing this post. It's fun because it's 
+weird and a bit stupid. But hey, that's what I do, stupid stuff.
