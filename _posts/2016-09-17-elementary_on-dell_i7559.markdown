@@ -2,7 +2,7 @@
 layout: post
 title:  "ElementaryOS on Dell i7559"
 date:   2016-09-17 02:02:25
-categories: CHIP
+categories: laptop
 image: /assets/images/i75590.jpg
 ---
 
