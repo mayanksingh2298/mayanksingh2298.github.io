@@ -6,7 +6,7 @@ categories: CHIP
 image: /assets/images/i75590.jpg
 ---
 
-It's pretty fucking easy if you don't fuck up like me. So I won't be telling what to do(Ok I will),
+It's pretty easy if you don't mess up like me. So I won't be telling what to do(Ok I will),
 but rather what not to do!
 
 Story
