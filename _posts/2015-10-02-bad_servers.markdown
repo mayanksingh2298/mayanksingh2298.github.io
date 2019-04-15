@@ -18,26 +18,26 @@ like this:
 {% highlight scala %}
 def receive = {
 	case Grid.host =>
-	port = 7961
-	startServer()
-	val temp = inStream.readUTF()
-	println(temp)
-	inData =
-	if (temp == inData)
-	temp + " <3"
-	else
-	temp
+		port = 7961
+		startServer()
+		val temp = inStream.readUTF()
+		println(temp)
+		inData =
+			if (temp == inData)
+				temp + " <3"
+			else
+				temp
 
 	self ! Grid.host
 
 	case (todo: (String => Unit), onMainThread: Boolean) =>
-	if (onMainThread)
-	incomingMessage
-	.observeOn(JavaConversions.javaSchedulerToScalaScheduler(AndroidSchedulers.mainThread()))
-	.subscribe(todo)
-	else
-	incomingMessage
-	.subscribe(todo)
+		if (onMainThread)
+			incomingMessage
+				.observeOn(JavaConversions.javaSchedulerToScalaScheduler(AndroidSchedulers.mainThread()))
+				.subscribe(todo)
+		else
+			incomingMessage
+				.subscribe(todo)
 	case _ =>
 }
 {% endhighlight %}
@@ -70,12 +70,7 @@ def startServer() = {
 }
 {% endhighlight %}
 
-Lines:
-
-1. Okay stopping the server if already started
-2. What in the world were you thinking?
-
-Didn't get it? Okay, here is the deal. If google had these lines then whenever someone
+If google had these lines then whenever someone
 searched something and then finally quit the browser, the main server would go full down
 and would restart, everytime, *Everytime, Reboot*. This is how it happens in my code.
 The actor receives a "host" message and in turn it starts a server, the client connects and
