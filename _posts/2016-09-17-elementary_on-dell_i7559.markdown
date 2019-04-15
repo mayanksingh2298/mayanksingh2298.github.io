@@ -41,7 +41,9 @@ some config options and kernel parameters. There would a line starting with 'lin
 
 This time it will boot but boy will it look bad. Probably 800*600 res. Well, there you go, install Elementary onto that free space or using any other method. When installed, that _not booting up_ problem would be there again, but now you know how to handle it. After the actual boot from your hdd, the visuals won't be bad, but would be slow and transitions would stutter. Simply install nvidia drivers. Here is the easy 16.04 way of doing that.
 
-`sudo ubuntu-drivers autoinstall`
+{%  highlight bash %}
+sudo ubuntu-drivers autoinstall
+{%  endhighlight %}
 
 Make sure you can pull from xenial repos. If not, then do this:
 

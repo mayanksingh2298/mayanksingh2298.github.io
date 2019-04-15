@@ -7,6 +7,14 @@ image: /assets/article_images/jared-header.png
 ---
 <br/>
 
+There has been an awakening. Bots, slack bots have taken over and they are everywhere.
+
+
+Build a slack bot and deploy on heroku
+=
+
+<br/>
+
 >Bot: Why would you want to be something more than a machine?
 
 >Me: Because I choose to
@@ -14,13 +22,6 @@ image: /assets/article_images/jared-header.png
 >Bot: Why do you choose to exist?
 
 >Me: Because I can
-
-
-Build a slack bot and deploy on heroku
-=
-
-<br/>
-There has been an awakening. Bots, slack bots have taken over and they are everywhere.
 
 If you use slack you know what I am talking about. Automation, integrations and bots, these
 are the things which MAKE slack. And recently I was in need of one. I named it jared(silicon valley).
@@ -35,8 +36,6 @@ it I learned about
 4. Do a `git init` before `heroku create`
 
 
-Step by step
-=
 <br/>
 
 Get the token

@@ -21,7 +21,6 @@ Monitor logcat output and whenever that specific string comes up, emulate the ke
 So here are the steps I followed:
 
 - Install some dependencies `sudo apt-get install xdotool xautomation`
-
 - Make a script and run it, with script being
 {%  highlight bash %}
 while true;do
