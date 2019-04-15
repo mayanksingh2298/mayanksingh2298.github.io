@@ -14,9 +14,7 @@ authentication mechanism.
 The websocket library I chose to use is `ws`. And my plan is simple.
 
 - Acquire a token from the server
-
 - Send that token as an additional header
-
 - On server side, receive the header, if valid, then ok but if not then fail the connection
 
 And I got to know this really cool thing called [JWT]('https://jwt.io'). In one line, it is a
@@ -38,8 +36,8 @@ To sign an object I need a secret key and the object to sign. I can also give ad
 {%  highlight js %}
 var jwt = require('jsonwebtoken')
 var token = jwt.sign({name:'iostreamer'},'secret-key',{
-            expiresIn : 15 * 24 * 60 * 60 * 1000 // 15 days
-        })
+    expiresIn : 15 * 24 * 60 * 60 * 1000 // 15 days
+})
 {%  endhighlight %}
 
 Handle tokens with care, these are **signed** using the secret key not encrypted.
@@ -57,10 +55,10 @@ contains the token, and specifies that it should be added to the headers.
 {%  highlight js %}
 WebSocket = require 'ws'
 ws = new WebSocket 'ws://localhost:8000',{
-        headers : {
-          token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaW9zdHJlYW1lciJ9.oNx-4e9hldyATpdPZghd_sjX8DhTkQFVDBxIhKh4MC4"
-        }
-      }
+    headers : {
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaW9zdHJlYW1lciJ9.oNx-4e9hldyATpdPZghd_sjX8DhTkQFVDBxIhKh4MC4"
+    }
+}
 {%  endhighlight %}
 
 Server side
