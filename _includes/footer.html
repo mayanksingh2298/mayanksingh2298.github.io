@@ -14,7 +14,7 @@
   display: block; overflow: hidden; cursor: pointer;
   height: 36px; padding: 0; line-height: 36px;
   border: 2px solid #CCCCCC; border-radius: 36px;
-  background-color: #FFFFFF;
+  background-color: #000;
   transition: background-color 0.3s ease-in;
 }
 .onoffswitch-label:before {
@@ -27,10 +27,10 @@
   transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label {
-  background-color: #3B4F3B;
+  background-color: #000;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
- border-color: #3B4F3B;
+ border-color: #CCC;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
   right: 0px;
@@ -44,7 +44,7 @@
 </center>
 <p>Powered by <a href="https://ze-al.herokuapp.com/" target="_blank">ZEAL</a></p>
 <p id="status" >Turn on to listen to my tunes.</p> <p>This little experiment lets anyone stream my laptop's speaker output, in realtime.</p>
-<p>If nothing is being played for more than 30 seconds, then most probably I am sleeping, or in college, or you have bad internet.</p>
+<p style="line-height:1.7">If nothing is being played for more than 30 seconds, <br>then most probably I am sleeping, or in college, or you have bad internet.</p>
 <p>.</p>
 <p>.</p>
 <p>In that case, try my soundcloud playlist. Guessed it right, I am a music buff!</p>
@@ -70,8 +70,7 @@ document.getElementById('myonoffswitch').onchange = function() {
 }
 </script>
 
-<iframe frameborder='no' height='300' scrolling='yes'
-src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/81283900/favorites&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;visual=false' width='100%'/>
+<iframe width="70%" height="230" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/81283900/favorites&color=%23920c45&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
 
 </footer>
 
