@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Coroutines as <br/> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Lazy Reducers"
+title:  "Coroutines as Lazy Reducers: Part 1"
 date:   2019-04-15 02:02:25
 categories: abstract-tech
 image: /assets/images/i75590.jpg
@@ -10,6 +10,8 @@ image: /assets/images/i75590.jpg
 <br/>- me
 
 **PART 1/2**
+
+Part 2 is [here](/abstract-tech/2019/04/16/coroutine-as-reducer-part-2.html)
 
 ______
 
@@ -118,7 +120,49 @@ Now, this mutation could affect our entity in any way we want, in fact we can ch
 This freedom allows us to imagine concepts like `"map"` and "`filter`", where each such concept can be achived by choosing our entity as an empty array,
 and for mutating appropriately.
 
+{%  highlight js %}
+    Collection
+       +---+
++----> |   |   Mutation         +-+ Entity
+       +---+------------------->+-+
+       +---+
+       |   |
+       +---+
+       +---+
+       |   |
+       +---+
 
+{%  endhighlight %}
+
+{%  highlight js %}
+    Collection
+       +---+
+       |   |
+       +---+
+       +---+                   +---+
++----> |   |  Mutation         |   |Entity
+       +---+------------------>+---+
+       +---+
+       |   |
+       +---+
+
+{%  endhighlight %}
+
+{%  highlight js %}
+    Collection
+       +---+
+       |   |
+       +---+
+       +---+
+       |   |
+       +---+                   +-----+
+       +---+  Mutation         |     | Entity
++----> |   +------------------>+     |
+       +---+                   +-----+
+
+{%  endhighlight %}
 ______
 
 In the next part, we will learn what a lazy reducer is and how a coroutine can be imagined as one.
+
+[Part 2](/abstract-tech/2019/04/16/coroutine-as-reducer-part-2.html)
