@@ -35,11 +35,11 @@ And just like above, it has always been a two step cyclic process:
 - Ask for next element
 - Act
 
-This as rudimentary as iteration can get when involving arrays:
+This is as rudimentary as iteration can get when involving arrays:
 {%  highlight js %}
 const array = [1,2,3,4];
 
-for(let = 0; i < array.length; i++ /*Ask for next element*/) {
+for(let i = 0; i < array.length; i++ /*Ask for next element*/) {
     console.log(array[i]); /*Act*/
 }
 {%  endhighlight %}
@@ -118,7 +118,7 @@ The concept of "`reduce`", as stated before, is to maintain an entity, iterate o
 Now, this mutation could affect our entity in any way we want, in fact we can choose our entity to be anything we want.
 
 This freedom allows us to imagine concepts like `"map"` and "`filter`", where each such concept can be achived by choosing our entity as an empty array,
-and for mutating appropriately.
+and by mutating appropriately.
 
 {%  highlight js %}
     Collection

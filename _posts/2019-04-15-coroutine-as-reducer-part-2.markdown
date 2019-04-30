@@ -187,7 +187,7 @@ ________________________________________________________________
 what gives it so much power. While learning and programming, you'd come across complicated patterns but with a keen eye
 you'd be able to see that it's nothing but a specific way of implementing a general or abstract concept.
 
-Such is the case with `couroutines` too. You'd think, maybe expect it to be something complicated. Whereas in reality, it's 
+Such is the case with `coroutines` too. You'd think, maybe expect it to be something complicated. Whereas in reality, it's 
 a nice little reducer.
 
 So go ahead, venture into the land of code and you just might encounter a `reducer` in wild.
