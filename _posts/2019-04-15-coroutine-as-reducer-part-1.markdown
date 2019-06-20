@@ -3,7 +3,6 @@ layout: post
 title:  "Coroutines as Lazy Reducers: Part 1"
 date:   2019-04-15 02:02:25
 categories: abstract-tech
-image: /assets/images/i75590.jpg
 ---
 
  > To reduce, is to iterate and mutate.

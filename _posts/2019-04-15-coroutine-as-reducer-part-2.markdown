@@ -4,7 +4,6 @@ margin-left: 150px
 title:  "Coroutines as Lazy Reducers: Part 2"
 date:   2019-04-16 02:02:25
 categories: abstract-tech
-image: /assets/images/i75590.jpg
 ---
 
 In the first part, we discussed what it means to `"reduce"` something. Although, we assumed we were iterating synchronously.
