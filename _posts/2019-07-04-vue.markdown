@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "Change is the only constant"
+date:   2019-07-04 02:02:25
+categories: life
+---
+
+If we set aside the monotonous aspect of our work, there is a little space for us, to express ourself.
+Each piece you build, is built in a certain way that adheres to industry standards and norms but at the same time,
+tries to be a reflection of your thinking. You might be aware of this already, or this might be the first time you are
+hearing about this, but this is what I have observed about myself.
+
+Mechanical, yet innovative, like Steam Punk, is what I would classify my style as. You too would have a signature, that marks your work.
+Well, it just happens that I am looking to switch up my style. There's nothing wrong with it, and I am not up for completely changing it, just
+the mechanical part.
+
+The best way to do that would be to use that little space of self expression. But trying to build scalable architectures and figuring out efficient data
+structure doesn't seem like the right way to go about. Maybe something visual, something which values a e s t h e t i c s  and might also use my engineering skills.
+**Frontend apps come to mind!** And whatever experience I managed to gain in frontend tells me it's not just about placing `div`s here and there. 
+
+And hence, my journey begins. I have been reading up on Vue and so far I have been nothing but amazed, both at the solution and the problem.
+I have a feeling I will learn more about my mechanical aspect of thinking but the fact that everything you build, just shows, will force me to think more freely.
+
+
+Here's to learning!
