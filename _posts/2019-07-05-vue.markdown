@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "learn(Vue);"
+date:   2019-07-05 02:02:25
+categories: vue
+---
+
+**My notes on starting with Vue**
+
+___
+
+
+I am actually working on a disqus alternative, something that is open source and is self hosted and is just
+open and extensible in general, be it the design or the features.
+
+I decided to go with Vue for this one, based on a few times I scratched the surface through one of those medium articles.
+To kickstart that, I needed to know what I was getting into, so I sat down and went through the docs, and boy am I happy to choose Vue!
+
+<br>
+### Notes from the doc reading process:
+<br>
+- Reactivity
+  - So far, the framework seems to focus a lot on how `reactive` everything is. I tried fitting its gears into the Rx
+  lingua franca, and I could see how I could view certain elements of the framework as a Signals(the data layer), and some others as Subscribers(the view layer),
+  we could throw in some operators too(computed properties, filters and more)!
+
+- v-bind
+  - The signal analogy helped here. I viewed this directive as something which converts a static field into a dynamic signal, or an observable.
+ 
+  - You just provide a source for this signal and it starts flowing.
+    - Imagine your data object in `new Vue({ data: { count: 0 } });` as a signal or a stream of data and whenever you bind an attribute to the data,
+    all you are doing is piping the stream's contents to a subscriber.
+
+- MVVM
+  - I can't comment on it much whatever I found on Wikipedia impressed me, the whole ViewModel and Binder concept looks interesting.
+
+- Reactive System
+  - This was the meat I was looking for! This explained the whole `defineProperty` -> Watcher -> Async Update DOM Queue
+  - `Observable.from(Vue instance's data object).subscribe(change => update DOM)` was the pseudo code I thought I would find and that's what their Reactivity System seems to be doing.
+
+- General Observations
+  - An instance or a component seems to be a reflection of the DOM element they are bound to.
+  
+  - A directive’s job is to reactively apply side effects to the DOM when the value of its expression changes.
+
+  - Computed properties
+    - I liked the caching and reactive dependency
+
+  - Child to parent event handling
+    - I was impressed by `.sync`
+
+
+___
+
+I skipped through the Vuex and Router part and will be looking into it later. But for someone coming from backend background, Vue feels natural.
+The decisions it made and the way it structured itself, there seems to a flow. 
+
+Well, that wraps it up!
