@@ -21,7 +21,7 @@ To kickstart that, I needed to know what I was getting into, so I sat down and w
 <br>
 - Reactivity
   - So far, the framework seems to focus a lot on how `reactive` everything is. I tried fitting its gears into the Rx
-  lingua franca, and I could see how I could view certain elements of the framework as a Signals(the data layer), and some others as Subscribers(the view layer),
+  lingua franca, and I could see how I could view certain elements of the framework as Signals(the data layer), and some others as Subscribers(the view layer),
   we could throw in some operators too(computed properties, filters and more)!
 
 - v-bind
@@ -32,7 +32,7 @@ To kickstart that, I needed to know what I was getting into, so I sat down and w
     all you are doing is piping the stream's contents to a subscriber.
 
 - MVVM
-  - I can't comment on it much whatever I found on Wikipedia impressed me, the whole ViewModel and Binder concept looks interesting.
+  - I can't comment on it much, but based on whatever I found on Wikipedia impressed me. The whole ViewModel and Binder concept looks interesting.
 
 - Reactive System
   - This was the meat I was looking for! This explained the whole `defineProperty` -> Watcher -> Async Update DOM Queue
@@ -53,6 +53,6 @@ To kickstart that, I needed to know what I was getting into, so I sat down and w
 ___
 
 I skipped through the Vuex and Router part and will be looking into it later. But for someone coming from backend background, Vue feels natural.
-The decisions it made and the way it structured itself, there seems to a flow. 
+The decisions it made and the way it structured itself, there seems to be a flow. 
 
 Well, that wraps it up!
