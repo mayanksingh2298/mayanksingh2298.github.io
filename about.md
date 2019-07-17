@@ -2,7 +2,6 @@
 layout: page
 permalink: /about/
 ---
-![](/assets/images/iostreamer.png)
 <br/><br/>
 Greetings wanderer! I am a dev who loves/lives to code. Polyglot, yes. I love frameworks and languages.
 I feel like a kid who got a new toy when I see new languages.I started with JAVA for Android.
