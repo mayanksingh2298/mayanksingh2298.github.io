@@ -1,0 +1,84 @@
+---
+layout: post
+title:  "Compiler as a service"
+date:   2020-04-19 02:02:25
+categories: caas
+---
+
+**Experimenting with seamlessly offloading typescript compilation**
+
+___
+
+Now that time has ceased to exist amidst the quarantine, the mind would obviously wander and do things in order  to be anything but bored. Work is well, work. And sure there's a lot of room to experiment but it's a different kind, a very professional kind. 
+
+And to get away from that for a while, I picked the problem of my macbook pro being an absolute beefy snail under load. Sure I got my standard VS Code, a terminal, a browser, slack, postman and some other programs running, but there comes a time when I change something in my code and in response the macbook starts preparing for a lift off.
+
+You see I have this typescript project, not too big, but not too small either. I keep a build task running in background which incrementally compiles code whenever I change it. 
+
+And here is the usual ram usage:
+
+![](/assets/article_images/tscw.png)
+
+Looking up and fixing VS Code ram usage is fairly easy, but what about that node process? That's the one I have no idea how to fix. I mean it compiles stuff and it takes a lot of juice, that's all I know.
+
+I can't throw hardware at this problem! Or so I thought. Well I can't upgrade my RAM or my CPU even for that matter. But, I do have nice PC sitting idle when I work. It's has 16G of RAM, and a Ryzen 1600 for CPU. Fun fact, Ryzen 1600 is supposed to be a 6-core processor but somehow AMD manafacturing plants messed up and released a few 1600s with 8 cores. And somehow I got lucky.
+<br>
+<br>
+<br>
+<br>
+## The problem
+<br>
+The problem is straghtforward, use the PC to compile the code residing on my macbook. 
+
+But I have come to depend on nodemon and auto reload on change. And that's something I don't want to miss out on. So let's throw in this constraint as well. The solution should work as good as shown below:
+
+![](/assets/article_images/auto-reload.gif)
+<br>
+<br>
+<br>
+<br>
+## The solution
+<br>
+What if we listened for changes in our filesystem, especially if done to a particular directory, and then we create a zip, send it to PC over network, the PC compiles it, and sends back a zip, we unzip it? Voila, we have got ourselves a working solution! And along with that we have got ourselves a whole lot of lag! This would slow down to the point of defeating the whole purpose.
+
+I am quite convinced that sending code back and forth will be a bottleneck if I come up with something of my own. It'd be better if we lean on something native, I mean this is a problem someone else must have solved. And sure someone had. It's called NFS(Network File system), and it's quite old and widely used.
+
+The idea is simple, mount macbook's disk on PC and then ask PC to compile.
+
+```js
+                          +--------------------------+
+                          | +--------------+         |
+                          | |Compiler      |         |
+                          | +-+------------+         |
+                          |   |                      |
+                          |   |                      |
+                          |   |Compile mounted       |
+                          |   |project               |
+                          |   |                      |
+                          |   |                      |
+                          |   |                      |
+                          +---v---------+            |
+                          |             |            |
++---------+               |             |            |
+|         +-------------->+ Mounted     |            |
+| Macbook |   Mount       | Project     |            |
+|         |               |             |            |
++---------+               |             |            |
+                          |             |            |
+                          +-------------+            |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |      PC                  |
+                          +--------------------------+
+
+```
+<br>
+
+And as the name `Network File System` suggests, it lets you access remote machines' disk as if you are accessing it locally. And that's the beauty of it. Anything I change on my machine, gets transmitted to the remote machine instantly(well ignoring some network latency) and vice versa.
+
+
+I tried this solution and first I needed to setup NFS server on my mac. [NFS Manager](https://www.bresink.com/osx/NFSManager.html) is a nice little free took that came handy. It's easy to configure and lets you control a lot of things. Things which I didn't understand and hence didn't touch.
