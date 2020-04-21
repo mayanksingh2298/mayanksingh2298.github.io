@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Compiler as a service"
+title:  "Compiler as a service: An experiment with typescript"
 date:   2020-04-19 02:02:25
 categories: caas
 ---
 
-**Experimenting with seamlessly offloading typescript compilation**
+**Seamlessly offloading typescript compilation**
 
 ___
 
@@ -164,7 +164,7 @@ Here's a script I wrote which `SSHs` into the remote machine, goes to the approp
 #!/usr/bin/env zsh
 
 cwd=`pwd`
-cwd="${cwd/Users/mnt}"
+cwd="${cwd/Users/mnt}" // Syntax for replacing substrings
 cwd="${cwd/iostreamer/bianco}"
 ssh -tt iostreamer@kaer-morhen.local "cd $cwd && tsc -w"
 ```
