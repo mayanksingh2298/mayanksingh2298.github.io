@@ -1,0 +1,276 @@
+---
+layout: post
+title:  "Compiler as a service: An experiment with typescript"
+date:   2020-04-19 02:02:25
+categories: caas
+image: /assets/article_images/ts.jpeg
+---
+
+**Seamlessly offloading typescript compilation**
+
+___
+
+Now that time has ceased to exist amidst the quarantine, the mind would obviously wander and do things in order to be anything but bored. Work is, well, work. And sure there's a lot of room to experiment but it's a different kind, a very professional kind. 
+
+And to get away from that for a while, I picked the problem of my macbook pro being an absolute beefy snail under load. Sure I got my standard VS Code, a terminal, a browser, slack, postman and some other programs running, but there comes a time when I change something in my code and in response the macbook starts preparing for a lift off.
+
+You see I have this typescript project, not too big, but not too small either. I keep a build task running in background which incrementally compiles code whenever I change it. 
+
+And here is the usual ram usage:
+
+![](/assets/article_images/tscw.png)
+
+Looking up and fixing VS Code ram usage is fairly easy, but what about that node process? That's the one I have no idea how to fix. I mean it compiles stuff and it takes a lot of juice, that's all I know.
+
+I can't throw hardware at this problem! Or so I thought. Well I can't upgrade my RAM or my CPU even for that matter. But, I do have nice PC sitting idle when I work. It has 16G of RAM, and a Ryzen 1600 for CPU. Fun fact, Ryzen 1600 is supposed to be a 6-core processor but somehow AMD manafacturing plants messed up and released a few 1600s with 8 cores. And somehow I got lucky.
+<br>
+<br>
+<br>
+<br>
+## The problem
+<br>
+The problem is straightforward, use the PC to compile the code residing on my macbook. 
+
+But I have come to depend on nodemon and auto reload on change. And that's something I don't want to miss out on. So let's throw in this constraint as well. The solution should work as good as shown below where nodemon restarts my server as soon as I change a file and save it:
+
+![](/assets/article_images/auto_reload.gif)
+<br>
+<br>
+<br>
+<br>
+## The solution
+<br>
+What if we listened for changes in our filesystem, especially if done to a particular directory, and then we create a zip, send it to PC over network, the PC compiles it, and sends back a zip, we unzip it? Voila, we have got ourselves a working solution! And along with that we have got ourselves a whole lot of lag! This would slow down to the point of defeating the whole purpose.
+
+I am quite convinced that sending code back and forth will be a bottleneck if I come up with something of my own. It'd be better if we lean on something native, I mean this is a problem someone else must have solved. And sure someone had. It's called NFS(Network File system), and it's quite old and widely used.
+
+The idea is simple, mount macbook's disk on PC and then ask PC to compile.
+
+```js
+                          +--------------------------+
+                          | +--------------+         |
+                          | |Compiler      |         |
+                          | +-+------------+         |
+                          |   |                      |
+                          |   |                      |
+                          |   |Compile mounted       |
+                          |   |project               |
+                          |   |                      |
+                          |   |                      |
+                          |   |                      |
+                          +---v---------+            |
+                          |             |            |
++---------+               |             |            |
+|         +-------------->+ Mounted     |            |
+| Macbook |   Mount       | Project     |            |
+|         |               |             |            |
++---------+               |             |            |
+                          |             |            |
+                          +-------------+            |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |                          |
+                          |      PC                  |
+                          +--------------------------+
+
+```
+<figure class="image"><img src=""><figcaption>Figure 1</figcaption></figure>
+<br>
+
+And as the name `Network File System` suggests, it lets you access remote machines' disk as if you are accessing it locally. And that's the beauty of it. Anything I change on my machine, gets transmitted to the remote machine instantly(well ignoring some network latency) and vice versa.
+<br>
+<br>
+### Explaination
+***Figure 1*** sheds some light on this simple architecture. The remote machine has the compiler installed, and to actually compile it, all that needs to be done is compile the directory. 
+
+And yes, that directory is a mounted one but that doesn't matter!
+It's a directory nonetheless and the compiler is well versed in talking to it.
+
+Well, ok, sure the compiler can handle a mounted directory but does it help our cause? Absolutely!
+
+The directory is mounted on remote machine, and it has the compiler as well. It's pretty straightforward for the remote machine to go ahead and provide some resources to the compiler and let it do its job.
+
+**Offloading succesfull!**
+
+<br>
+<br>
+## Setup
+<br>
+I tried this solution and first I needed to setup NFS server on my mac. [NFS Manager](https://www.bresink.com/osx/NFSManager.html) is a nice little free tool that came handy. It's easy to configure and lets you control a lot of things.
+
+
+![Here are my settings for NFS Manager](/assets/article_images/nfsm.png)
+
+Now that my macbook is mountable, I needed to tell my PC to actually mount it. My PC runs a Ubuntu, so all the commands for PC will be linux specific. 
+
+In essence, I need to use the `mount` command and tell it the IP address of my macbook and the directory it's sharing.
+<br>
+### Zero Conf
+<br>
+It enables any device to find other devices on the network and contact them. So if a device has the zero-conf daemon running, and is brought on to a network, it has the capability to find other zero-conf enabled devices.
+
+But what does it mean to 'know' devices on the network? Well a part of the answer is the name of the device, or more specifically the hostname. 
+
+`mDNS(Multicast DNS)` is another service on which Zero Conf relies on and it powers the hostname resolution for connected devices. 
+
+Each device on the network has a name it can use, and by default other devices can access it through the hostname: `<device-name>.local`
+
+Well ***access*** is not quite right, just like DNS, mDNS is also a protocol which maps hostnames to IP addressess. And that's all it does, it resolves the hostname into a valid IP address.
+
+Once you have the IP you can basically do all the networking you want to do. 
+
+The beauty is, you don't have to remeber ip addresses anymore, if your device restarts and your router gives it a different IP address, it simply doesn't matter. We have a hostname for the device now, and mDNS to resolve it.
+
+It comes by default in macOS, and in fact you can test it right away. `<your-laptop's-name>.local` is the hostname of your macbook. And if you have a server running(can try running with `python -m SimpleHTTPServer`), you can access it using that hostname.
+
+<br>
+### Setting up NFS
+<br>
+Let's continue our NFS journey with this newfound knowledge of `.local` domains.
+In my setup, the name of my PC is `kaer-morhen` and my macbook is named `bianco`.
+
+Once again:
+<br>
+PC/Remote machine = `kaer-morhen`
+<br>
+Macbook = `bianco`
+
+I have created a directory on PC as `/mnt/bianco`. If a new device comes up it'll follow the same pattern.
+Now, mounting is simple, as discussed before, we will have to use the mount command, like this:
+
+```
+sudo mount bianco.local:/System/Volumes/Data/Users/iostreamer /mnt/bianco
+```
+
+This comes with a limitation that one'd have to mount it everytime I boot the PC. To automate it, I followed the steps mentioned [here](https://linuxize.com/post/how-to-mount-an-nfs-share-in-linux/#automatically-mounting-nfs-file-systems-with-etcfstab) and created an entry in `/etc/fstab` and let the OS handle it for me. Now all that mounting stuff is done behind the scenes automatically!
+
+Voila! Our macbook will be automatically mounted on PC whenever the PC boots.
+
+<br>
+### Setting up Compiler
+<br>
+For this particular project, I need the typescript compiler. Installing it is as simple as:
+```js
+npm i -g typescript
+```
+
+To compile the project all one needs to do is run the command `tsc` in the project directory. This parses your tsconfig.json, picks up source directories, compiles file and puts them in the output directory. But we also need it to watch for changes done to the source directories and then recompile if anything changes. That can be done with compiling in watch mode: `tsc -w`. This would block your shell and start watching for changes.
+
+Here's a script I wrote which `SSHs` into the remote machine, goes to the appropriate directory and starts compilation in watch mode. I named this script `rcw`(Remote compile watch). It basically picks up the current working directory as string, and replaces folder names such that it matches the mount folder on remote machine:
+
+```js
+#!/usr/bin/env zsh
+
+cwd=`pwd`
+cwd="${cwd/Users/mnt}" // Syntax for replacing substrings
+cwd="${cwd/iostreamer/bianco}"
+ssh -tt iostreamer@kaer-morhen.local "cd $cwd && tsc -w"
+```
+
+Let's try to run it, change the files and see if automatically compiles the changes or not:
+
+![](/assets/article_images/tcf.gif)
+
+#### Lo and behold, it doesn't work!
+<br>
+
+What did we miss? Did we miss something? Let's find out!
+
+<br>
+<br>
+## The catch
+<br>
+
+Why did it not work? We have mounted correctly, it even compiles properly and one can even see the compiled files locally. Then what's stopping it to react to changes done to files?
+
+Well, to be blunt, it does work. It's just clunk and slow in my experience(YMMV). 
+<br>
+#### What is inotify?
+
+Well `inotify` is a Linux API/ Sub system. You can ask this API to tell you whenever a change is done to a directory or its files. When you run `tsc -w`, i.e. compile in watch mode, that's exactly what the typescript compiler does.
+It sets up a watcher, which is notified when source directories change.
+
+In our case, the NFS client running on linux(PC) is the one handling changes done by macbook. And these changes are all immediate, very snappy. You can verify by creating a file locally and then `SSHing` in to remote machine and using the `watch` command to see the contents of the file at let's say an interval of 0.1s. As soon as you change the contents of the file locally, you'd see it getting reflected immediately through the `watch` command.
+
+The issue seems to be with NFS client and inotify. It's not that it doesn't work, but in my experience it's quite slow, to the extend you can't depend on it. From what I observed, the content of the file change immediately but the NFS client takes its time to contact inotify. Eventually it does, but who wants to wait?
+
+<br>
+<br>
+## The solution: Part 2
+<br>
+After Googling for like 5 minutes I came across this interesting project called [notify-forwarder](https://github.com/mhallin/notify-forwarder). It works on a very simply principle, forward it manually.
+
+It's a program which works in 2 modes:
+- watch
+    - When working in watch mode, it listens for changes locally and transmits those changes to the specified machine.
+    - When watching, you have to specify the remote ip, as well as the remote directory path.
+- receive
+    - When working in receive mode, it simply listens for changes done to the directory.
+
+To be more precise, this program simply tells `some` change has been done to a file. And when listening for events(receive mode), it simulates an `ATTRIB` event. This event is fired when an attribute of the file is changed.
+
+And the obvious drawback is that, not all compilers/build systems respect `ATTRIB` events.
+
+Thankfully, typescript does. 
+
+Now, all we have to do is run this program in receive mode on my PC. And then in watch mode locally. For PC, I didn't want to run it manually, so I created a service, which can be handled by `systemd`. 
+
+Note: I had no prior experience with systemd services and followed this [guide](https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/) to create it.
+
+Here are the scripts for my PC:
+
+
+```js
+notify-forwarder receive
+```
+<figure class="image"><img src=""><figcaption>Script to run in receive mode</figcaption></figure>
+```js
+[Unit]
+Description=Notify Forwarder
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/notify_receive
+
+[Install]
+WantedBy=multi-user.target
+```
+<figure class="image"><img src=""><figcaption>.service file for the script</figcaption></figure>
+
+<br>
+<br>
+<br>
+For my macbook, I needed a script which runs `notify-forwarder` in watch mode, watches the current directory and sends the changes to PC(kaer-morhen). I named it `nk` (Notify Kaer-Morhen)
+
+Here's the script for same:
+
+```js
+ip=`dscacheutil -q host -a name kaer-morhen.local | grep ip_address | awk -v FS=': ' '{print $2}'`
+cwd=`pwd`
+cwd="${cwd/Users/mnt}"
+cwd="${cwd/iostreamer/bianco}"
+notify-forwarder watch -c $ip . $cwd
+```
+
+<br>
+<br>
+And this is how it looks when it all comes together:
+
+![](/assets/article_images/auto_reload.gif)
+
+<br>
+<br>
+## Conclusion
+<br>
+This was a day's hack and I got to learn so much! But all of it fades when compared to this one learning. You see, before starting I thought achieving something like this smoothly would need some genius level hacks or code.
+
+But it did not. I just stumbled from one problem to another till I managed to hack together a part elegant, a part messy solution. This is definitely not a genius level code. 
+
+Getting it done `>` Waiting to learn some godsent tools and creating that perfect thing.
+
+### Future
+
+This is definitely not a `Compiler as a Service` product and I doubt it's going to be for a long time. But that's not going to stop me from monetising it in my home. My roommate has a similar setup, and I am thinking of an AWS like model where 1 CPU minute = 2 dishes they wash.
