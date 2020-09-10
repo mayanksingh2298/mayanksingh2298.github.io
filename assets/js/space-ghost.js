@@ -8,9 +8,37 @@ function getEmbedCodeForURI(uri) {
     return code;
 }
 
+function setCurrentPlayingStatus() {
+    const status = '<p id="space-ghost-icon">Listening right now</p>'
+    $('#space-ghost-status').html(status)
+    $(function () {
+        setInterval(function () {
+            $('#space-ghost-icon').fadeOut(800);
+            $('#space-ghost-icon').fadeIn(800);
+        }, 1600);
+    });
+}
+
+function setLastPlayedStatus() {
+    const status = '<p>Last Played</p>'
+    $('#space-ghost-status').html(status)
+}
+
+function setStatus(isPlaying) {
+    if (isPlaying) {
+        return setCurrentPlayingStatus()
+    }
+    setLastPlayedStatus()
+}
 
 
-function setTrack($) {
+
+function setTrack(uri) {
+    const embedCode = getEmbedCodeForURI(uri);
+    $('#space-ghost').html(embedCode)
+}
+
+function pollTrack($) {
     $.get('https://space-ghost.vercel.app/api/', function (data) {
         if (!data || !data.uri) {
             return
@@ -19,16 +47,13 @@ function setTrack($) {
             if (isPlaying === data.isPlaying) {
                 return
             }
-            const status = data.isPlaying ? 'Currently Playing' : 'Last Played'
-            $('#space-ghost-status').text(status)
+            setStatus(data.isPlaying)
             return
         }
         uri = data.uri;
 
-        const embedCode = getEmbedCodeForURI(data.uri);
-        $('#space-ghost').html(embedCode)
-        const status = data.isPlaying ? 'Currently Playing' : 'Last Played'
-        $('#space-ghost-status').text(status)
+        setTrack(uri)
+        setStatus(data.isPlaying)
     })
 }
 
@@ -36,12 +61,12 @@ function setTrack($) {
     "use strict";
 
     $(document).ready(function(){
-        setTrack($)
+        pollTrack($)
         setInterval(
             function () {
-                setTrack($)
+                pollTrack($)
             },
-            5*1000
+            2*1000
         )
     });
 
