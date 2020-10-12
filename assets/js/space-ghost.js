@@ -39,7 +39,7 @@ function setTrack(uri) {
 }
 
 function pollTrack($) {
-    $.get('https://space-ghost.vercel.app/api/', function (data) {
+    $.get('https://space-ghost-odi6i.ondigitalocean.app/', function (data) {
         if (!data || !data.uri) {
             return
         }
