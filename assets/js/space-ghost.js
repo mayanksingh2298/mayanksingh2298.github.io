@@ -1,3 +1,5 @@
+var gun = Gun('https://space-ghost-odi6i.ondigitalocean.app/gun');
+
 var uri = '';
 var isPlaying;
 
@@ -38,36 +40,27 @@ function setTrack(uri) {
     $('#space-ghost').html(embedCode)
 }
 
-function pollTrack($) {
-    $.get('https://space-ghost-odi6i.ondigitalocean.app/', function (data) {
-        if (!data || !data.uri) {
-            return
-        }
-        if (data.uri === uri) {
-            if (isPlaying === data.isPlaying) {
-                return
-            }
-            setStatus(data.isPlaying)
-            return
-        }
-        uri = data.uri;
-
-        setTrack(uri)
-        setStatus(data.isPlaying)
-    })
-}
 
 (function ($) {
     "use strict";
 
     $(document).ready(function(){
-        pollTrack($)
-        setInterval(
-            function () {
-                pollTrack($)
-            },
-            2*1000
-        )
+        gun.get('data').on(function (data) {
+            if (!data || !data.uri) {
+                return
+            }
+            if (data.uri === uri) {
+                if (isPlaying === data.isPlaying) {
+                    return
+                }
+                setStatus(data.isPlaying)
+                return
+            }
+            uri = data.uri;
+        
+            setTrack(uri)
+            setStatus(data.isPlaying)
+        });
     });
 
 }(jQuery));
