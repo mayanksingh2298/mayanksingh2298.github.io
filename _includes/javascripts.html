@@ -52,5 +52,10 @@
       player.hide();
       $('#stream-div').css('display', 'none');
     });
+
+    setInterval(function () {
+        $('#stream-header').fadeOut(800);
+        $('#stream-header').fadeIn(800);
+    }, 1600);
   }(jQuery));
 </script>
