@@ -47,15 +47,25 @@
 <script>
   (function ($) {
     "use strict";
-    var player = videojs('stream');
+    var player = videojs('stream', { responsive: true });
+    var interval;
+    var isErrored
     player.on('error', function() {
+      isErrored=true;
       player.hide();
       $('#stream-div').css('display', 'none');
+      $('#stream-header').css('display', 'none');
+      if (interval) {
+        clearInterval(interval)
+      }
     });
 
-    setInterval(function () {
-        $('#stream-header').fadeOut(800);
-        $('#stream-header').fadeIn(800);
-    }, 1600);
+    player.ready(function() {
+      interval = setInterval(function () {
+          $('#stream-header').fadeOut(800);
+          $('#stream-header').fadeIn(800);
+      }, 1600);
+    })
+
   }(jQuery));
 </script>
