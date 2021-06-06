@@ -1,5 +1,6 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script type="text/javascript" src="{{ " /assets/js/jquery.fitvids.js" | prepend: site.baseurl }}"></script>
 <script type="text/javascript" src="{{ " /assets/js/index.js" | prepend: site.baseurl }}"></script>
 <!-- <script type="text/javascript" src="{{ "/assets/js/space-ghost.js" | prepend: site.baseurl  }}"></script> -->
@@ -37,6 +38,18 @@
         }
       });
 
+    });
+  }(jQuery));
+</script>
+
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+
+<script>
+  (function ($) {
+    "use strict";
+    var player = videojs('stream');
+    player.on('error', function() {
+      player.hide()
     });
   }(jQuery));
 </script>
