@@ -5,6 +5,20 @@ permalink: /moonshots/
 
 *I made dis!*
 
+## Casset
+<br>
+I was working on a social music app(a different kind than instagram+music) during the great pandemic of 2020,
+and while I am yet to finish that project, I decided to publish whatever I had created till that time.
+<br>
+<br>
+Here's a fully interactive embedded version of that app:
+
+<iframe src="https://www.casset.app/" frameborder="0" height="900" width="100%"></iframe>
+<br>
+
+___
+<br>
+<br>
 
 ## Amethyst Labs
 <br>
@@ -47,6 +61,22 @@ I also added plugin support to this project which was difficult and new for me.
 ![](https://raw.githubusercontent.com/iostreamer-X/FuncShell/master/fsh.gif)
 
 [https://github.com/iostreamer-X/FuncShell](https://github.com/iostreamer-X/FuncShell)
+
+
+
+___
+<br>
+<br>
+
+## Roti Kapda Makaan
+<br>
+A JS package which generates unique combinations of hinglish words. 
+Your hinglish users can easily share back that id with you when needed. 
+It also adds that fun element to your interaction which users might enjoy!
+
+![](https://roti-kapda-makaan.dev/img/rkm-logo.png)
+
+[https://roti-kapda-makaan.dev/](https://roti-kapda-makaan.dev/)
 
 
 
