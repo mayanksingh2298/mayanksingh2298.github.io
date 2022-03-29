@@ -4,6 +4,7 @@
 @import 'syntax-highlighting'
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic')
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gentium+Book+Basic&family=Roboto+Slab&family=Source+Serif+Pro&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap')
 @import 'bourbon/bourbon'
 
 .cf
@@ -137,11 +138,12 @@ body
 
 .content
   width: 100%
-  max-width: 720px
+  max-width: 900px
   margin: 0 auto
   @include box-sizing(border-box)
   @include respond-to(800)
     padding: 0 $rs*2
+  
   article
     padding: 40px 0
     border-bottom: 1px solid #f2f2f0
@@ -599,15 +601,17 @@ body
 
 pre,
 code
+  font-family: 'Fira Code', monospace
   font-size: 19px
-  color: white
+  color: green
   border-radius: 3px
+  min-height: 250px
 
 code
   padding: 1px 5px
 
 pre
-  line-height: 23px
+  line-height: 36px
   padding: 8px 12px
   overflow-x: scroll
   > code
