@@ -80,12 +80,15 @@ function* () {
 So assembling into an array isn't exactly possible because of this backward dependency.
 But here's what we can do:
 
+<br/>
 - Iterate the generator function lazily/recursively
 - With each iteration, receive the promise that needs to be `yield`ed
 - Execute that promise
 - Start next iteration with previous one's result
 - Stop when nothing left to iterate
 - Return last iteration's result
+
+<br/>
 
 Here's how it looks in code:
 

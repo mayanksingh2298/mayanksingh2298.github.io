@@ -204,12 +204,14 @@ The issue seems to be with NFS client and inotify. It's not that it doesn't work
 After Googling for like 5 minutes I came across this interesting project called [notify-forwarder](https://github.com/mhallin/notify-forwarder). It works on a very simply principle, forward it manually.
 
 It's a program which works in 2 modes:
+<br/>
 - watch
     - When working in watch mode, it listens for changes locally and transmits those changes to the specified machine.
     - When watching, you have to specify the remote ip, as well as the remote directory path.
 - receive
     - When working in receive mode, it simply listens for changes done to the directory.
 
+<br/>
 To be more precise, this program simply tells `some` change has been done to a file. And when listening for events(receive mode), it simulates an `ATTRIB` event. This event is fired when an attribute of the file is changed.
 
 And the obvious drawback is that, not all compilers/build systems respect `ATTRIB` events.

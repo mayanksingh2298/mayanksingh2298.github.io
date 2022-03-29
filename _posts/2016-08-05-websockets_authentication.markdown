@@ -13,10 +13,12 @@ authentication mechanism.
 
 The websocket library I chose to use is `ws`. And my plan is simple.
 
+<br/>
 - Acquire a token from the server
 - Send that token as an additional header
 - On server side, receive the header, if valid, then ok but if not then fail the connection
 
+<br/>
 And I got to know this really cool thing called [JWT]('https://jwt.io'). In one line, it is a
 brilliant way of having stateless authentication.
 
@@ -70,6 +72,7 @@ object, which has a function under the property field `verifyClient`.
 
 `verifyClient` is provided with two arguments:
 
+<br/>
 - `info` Object:
   - `origin` String: The value in the Origin header indicated by the client.
   - `req` http.ClientRequest: The client HTTP GET request.
@@ -79,6 +82,7 @@ object, which has a function under the property field `verifyClient`.
   - `code` Number: If `result` is `false` this field determines the HTTP error status code to be sent to the client.
   - `name` String: If `result` is `false` this field determines the HTTP reason phrase.
 
+<br/>
 
 And this is how I did it in my code:
 

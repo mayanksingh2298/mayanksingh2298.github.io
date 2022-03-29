@@ -20,6 +20,7 @@ Monitor logcat output and whenever that specific string comes up, emulate the ke
 
 So here are the steps I followed:
 
+<br/>
 - Install some dependencies `sudo apt-get install xdotool xautomation`
 - Make a script and run it, with script being
 {%  highlight bash %}
@@ -34,6 +35,8 @@ done
 - Write a stupid command which asks for sudo access and then say _Ok Google_ and then watch it work perfectly.
 
 - Cry a bit because it worked and it was so easy.
+
+<br/>
 
 Script explained
 ==

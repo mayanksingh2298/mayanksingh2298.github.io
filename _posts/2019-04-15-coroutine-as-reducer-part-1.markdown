@@ -26,14 +26,18 @@ When I think of iteration, I imagine it as someone walking up a staircase,
 climbing the stairs, one by one, till they reach the top.
 
 It could be broken down as a 2 step cyclic process:
+<br/>
 - Notice the stair ahead
 - Step up
 
+<br/>
 As programmers, we have been iterating since we started learning programming.
 And just like above, it has always been a two step cyclic process:
+<br/>
 - Ask for next element
 - Act
 
+<br/>
 This is as rudimentary as iteration can get when involving arrays:
 {%  highlight js %}
 const array = [1,2,3,4];
@@ -70,6 +74,7 @@ We discussed how iteration has two parts:
 - Demand next element
 - Consume element
 
+<br/>
 What if, we maintained an entity and as our second step(consume element), we mutated that entity? This would mean that,
 after each cycle/iteration we would change our entity.
 
