@@ -3,7 +3,7 @@ layout: post
 title:  "Rusting NodeJS"
 date:   2022-03-04 02:02:25
 categories: node
-image: /assets/article_images/ts.jpeg
+image: /assets/article_images/rusting-nodejs.png
 ---
 
 **Circumventing the single thread bottleneck**
@@ -473,5 +473,7 @@ We see a tremendous performance increase, especially in p95 and p99 cases. We su
 
 This ability to create native addons has huge implications for JS projects. Imagine you have your entire stack in typescript and all the engineers well versed with TS/JS ecosystem, but you finally hit the limit. Now you can rewrite and retrain, or you can simply create a fast, low surface area library which anyone can plug and play as easily as downloading it from npm.
 
-All in all, it's looking good for NodeJS with projects like neon and languages like Rust.
+All in all, it's looking good for NodeJS with projects like neon and languages like Rust. Given that NodeJS democratized server side development, it has been fascinating to see how the pitfalls have been plugged over the years.
+
+We now have typescript to instill confidence and now wasm and ffi backed by reliable, safe and blazing fast languages. It's fair to say, NodeJS now has almost everything for everyone.
 
