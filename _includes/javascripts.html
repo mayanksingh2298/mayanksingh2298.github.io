@@ -18,7 +18,7 @@
 
         if (top < 0 || top > 1500) { return; }
         $image
-          .css('transform', 'translate3d(0px, ' + top / 3 + 'px, 0px)')
+          // .css('transform', 'translate3d(0px, ' + top / 3 + 'px, 0px)')
           .css('opacity', 1 - Math.max(top / 700, 0));
       });
       $window.trigger('scroll');
@@ -38,6 +38,12 @@
         }
       });
 
+      // underline description on image hover
+      $('.shake').hover(function() {
+        $('.underlineonhover').css('text-decoration', 'underline');
+      }, function() {
+        $('.underlineonhover').css('text-decoration', 'none');
+      });
     });
   }(jQuery));
 </script>

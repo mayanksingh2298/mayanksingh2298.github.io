@@ -7,23 +7,26 @@ plugins:
   - jekyll-paginate
 
 # Site settings
-title: "iostreamer"
+title: "rcher"
+title2: "Hi, I'm Mayank!"
 description: > # this means to ignore newlines until "email:"
-   ideas are bulletproof
+   What's the deal with the domain <span style="color: #cccccc">rcher</span> and the <span style="color: #cccccc">blue ring</span> above?
+description2: > # this means to ignore newlines until "email:"
+  This space is meant to be a blog-styled thought-dump. I'll be writing about everything intriguing I've come across in my life, from meaningful movie dialogues to cool YouTube discoveries.
 
-email: iostreamer@amethystlabs.org
+email: mayanksingh2298@gmail.com
 #blog logo
-logo: "/assets/images/io.jpg"
+logo: "/assets/images/gow_transparent.png"
 # blog cover
-cover: "/assets/images/witcher.jpg"
+cover: "/assets/images/gow.jpg"
 
-name: 'iostreamer'
-author: 'iostreamer'
-author_image: "/assets/images/io.jpg"
+name: 'Mayank'
+author: 'Mayank'
+author_image: "/assets/images/gow_transparent.png"
 
 paginate:	5
 
-url: "http://iostreamer.me" # the base hostname & protocol for your site
+url: "http://rcher.me" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
 twitter_handle: '@_iostreamer_'
@@ -33,3 +36,21 @@ disqus: io-streamer
 
 # social icons and sharing options
 social:
+  - icon:	github
+    url:	https://github.com/mayanksingh2298/
+    desc: Fork me on github
+    share_url: 
+    share_title: 
+    share_link: 
+  - icon:	instagram
+    url:	https://www.instagram.com/notyourdailymayank/
+    desc: Follow me on instagram
+    share_url: 
+    share_title: 
+    share_link:
+  - icon:	linkedin
+    url:	https://www.linkedin.com/in/mayank-singh-chauhan/
+    desc: Connect with me on linkedin
+    share_url: 
+    share_title: 
+    share_link: 

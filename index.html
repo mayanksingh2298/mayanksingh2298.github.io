@@ -2,32 +2,39 @@
 layout: default
 ---
 
-<div class="teaserimage">
-    <div class="teaserimage-image" {% if site.cover %}style="background-image: url({{ site.cover }})"{% endif %}>
+<div class="teaserimage" style="height: 40vh; margin-top: 10vh;">
+    <div class="teaserimage-image shake" {% if site.cover %}style="background-image: url({{ site.cover }})"{% endif %}>
         Teaser Image
     </div>
 </div>
 
 <header class="blog-header">
-    {% if site.logo %}
+    <!-- {% if site.logo %}
       <a class="blog-logo" href="{{site.url}}" style="background-image: url('{{ site.logo }}')">{{ site.title }}</a>
-    {% endif %}
-    <h1 class="blog-title">{{ site.title }}</h1>
-    <h2 class="blog-description">{{ site.description }}</h2>
+    {% endif %} -->
+    <h1 class="blog-title">{{ site.title2 }}</h1>
+    <h2 class="blog-description underlineonhover"><a href="/gaming">{{ site.description }}</a></h2>
     <div class="custom-links">
       {% for social in site.social %}
         {% if social.url %}
             <a class="icon-{{ social.icon }}" href="{{ social.url }}" {% if social.desc %} title="{{ social.desc }}"{% endif %}">
               <i class="fa fa-{{ social.icon }}"></i>
             </a>
+            &nbsp;&nbsp;·&nbsp;&nbsp;
         {% endif %}
       {% endfor %}
-      <a href="https://github.com/iostreamer-X">Github</a>
-      <a href="/art/" target="_blank" style="padding-left: 20px;">Art</a>                                          
-      <a href="https://music.iostreamer.me/" target="_blank" style="padding-left: 20px;">Music</a>
-      <a href="/moonshots/" target="_blank" style="padding-left: 20px;">Moonshots</a>
-      <a href="/design" target="_blank" style="padding-left: 20px;">Design</a>
-      <a href="/assets/rrr.pdf" target="_blank" style="padding-left: 20px;">Résumé</a>
+      <br>
+      <br>
+      <h2 class="blog-description">{{ site.description2 }}</h2>
+
+      <a href="/about">About me</a>
+      <a href="/philosophy" style="padding-left: 20px;"><span style="text-decoration: line-through;">Philosophy</span> Introspection</a>
+      <!-- <a href="/assets/rrr.pdf" target="_blank" style="padding-left: 20px;">Resume</a> -->
+      <br>
+      <br>
+
+      <h2 class="blog-description">Feel like talking to me? Feel free to schedule something on my open calendar <a href="https://calendly.com/mayanksingh2298">here</a>.</h2>
+
     </div>
     <div style="margin-top: 10px; margin-bottom: 150px;">
     </div>
