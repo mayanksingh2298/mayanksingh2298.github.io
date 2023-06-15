@@ -10,19 +10,19 @@ plugins:
 title: "rcher"
 title2: "Hi, I'm Mayank!"
 description: > # this means to ignore newlines until "email:"
-   What's the deal with the domain <span style="color: #cccccc">rcher</span> and the <span style="color: #cccccc">blue ring</span> above?
+   What's the deal with domain <span style="color: #cccccc">rcher</span> and <span style="color: #cccccc">blue ring</span> above?
 description2: > # this means to ignore newlines until "email:"
   This space is meant to be a blog-styled thought-dump. I'll be writing about everything intriguing I've come across in my life, from meaningful movie dialogues to cool YouTube discoveries.
 
 email: mayanksingh2298@gmail.com
 #blog logo
-logo: "/assets/images/gow_transparent.png"
+logo: "/assets/images/blogging.png"
 # blog cover
 cover: "/assets/images/gow.jpg"
 
 name: 'Mayank'
 author: 'Mayank'
-author_image: "/assets/images/gow_transparent.png"
+author_image: "/assets/images/blogging.png"
 
 paginate:	5
 
