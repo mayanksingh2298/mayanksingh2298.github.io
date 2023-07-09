@@ -2,7 +2,7 @@
 layout: post
 title:  "Lessons from Stoic school of thought"
 date:   2023-07-08 20:52:25
-categories: Linux Python
+categories: Philosophy Stoic
 image: 
 ---
 
