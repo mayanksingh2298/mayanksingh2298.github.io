@@ -5,6 +5,7 @@ highlighter: rouge
 plugins:
   - jemoji
   - jekyll-paginate
+  - jekyll-sitemap
 
 # Site settings
 title: "rcher"
