@@ -17,13 +17,13 @@ description2: > # this means to ignore newlines until "email:"
 
 email: mayanksingh2298@gmail.com
 #blog logo
-logo: "/assets/images/gow_transparent.png"
+logo: "/assets/images/cute-money-plant.png"
 # blog cover
 cover: "/assets/images/gow.jpg"
 
 name: 'Mayank'
 author: 'Mayank'
-author_image: "/assets/images/gow_transparent.png"
+author_image: "/assets/images/cute-money-plant.png"
 
 paginate:	5
 
