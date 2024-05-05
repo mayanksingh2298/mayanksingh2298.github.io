@@ -6,6 +6,7 @@ plugins:
   - jemoji
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-seo-tag
 
 # Site settings
 title: "rcher"
