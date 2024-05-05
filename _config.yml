@@ -31,10 +31,10 @@ paginate:	5
 url: "http://rcher.me" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
-twitter_handle: '@_iostreamer_'
+# twitter_handle: '@_iostreamer_'
 
 #fill in disqus shortname to use disqus
-disqus: io-streamer
+# disqus: io-streamer
 
 # social icons and sharing options
 social:
