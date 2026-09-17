@@ -1,6 +1,8 @@
 FROM ruby:2.7
 # FROM ruby:3.0
-RUN apt-get update && apt-get install -y nodejs
+# bullseye left LTS in Aug 2026 and its security/updates repos are gone; keep only main
+RUN sed -i '/bullseye-security/d; /bullseye-updates/d' /etc/apt/sources.list \
+ && apt-get update && apt-get install -y nodejs
 WORKDIR /app
 COPY Gemfile .
 COPY Gemfile.lock .
